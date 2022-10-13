@@ -163,10 +163,15 @@
         function reset() {
             chestCount = 0
             score = 0
+            lastCheck = 12
             treasureLocation = generateRandom(0,25)
             document.getElementById("chests").innerHTML = "Number of chests checked is zero."
             document.getElementById("score").innerHTML = "Score is unknown."
             document.getElementById("help").innerHTML = "Help report"
+            for (let index = 0; index < img_ids.length; index++) {
+                if (index != 12)
+                    document.getElementById(img_ids[index]).src = "Images/closed.jpg"
+            }
         }
         function generateRandom(min, max) {
             var num = Math.floor(Math.random() * (max - min + 1)) + min;
