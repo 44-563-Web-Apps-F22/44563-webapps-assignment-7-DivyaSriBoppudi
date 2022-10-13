@@ -146,9 +146,9 @@
                         out_score= document.getElementById("score")    
                         out_help= document.getElementById("help")    
                         out_score.innerHTML = "Score is "+score
-                        if(lastCheck_row == treasureLocation_row) {
+                        if(lastCheck_row == treasureLocation_row && lastCheck != treasureLocation) {
                             out_help.innerHTML = lastCheck_col < treasureLocation_col ? "right" : "left"
-                        } else if (lastCheck_col == treasureLocation_col) {
+                        } else if (lastCheck_col == treasureLocation_col && lastCheck != treasureLocation) {
                             out_help.innerHTML = lastCheck_row < treasureLocation_row ? "down" : "up"
                         } else {
                             out_help.innerHTML = "Sorry, no help available"
