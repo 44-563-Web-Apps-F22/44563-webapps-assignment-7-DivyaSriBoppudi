@@ -13,7 +13,6 @@
 
 <body class="p-3 mb-2 text-dark text-center" style="background-color:bisque">
   <h1 style="color:darkorchid">Divya sri reaction timer</h1>
-  <h2>Timeout - Red in 3 seconds</h2>
   <div class="container text-danger">
     <p id="target">Your time</p>
   </div>
@@ -21,32 +20,33 @@
   <p id="countdown">Count</p>
 </div>
 <div class="container mb-4">
-  <button type="button" class="btn btn-danger">Start Timer</button>
+  <button type="button" class="btn btn-danger" onclick="startTime()">Start Timer</button>
 </div>
 <div class="container mb-4">
   <button type="button" class="btn btn-success" onclick="recordReact()">React Now</button>
 </div>
-  <button type="button" class="btn btn-primary" onclick="buttonPress2()">
-    Click me change the color.</button>
-
-  <p id="target">I will become red </p>
 
   <script>
     myTime = undefined
+    
     function recordReact() {
       myTime = Date.now()
       console.log(myTime)
     }
-    function buttonPress1() {
-      setTimeout(function () {
-        document.getElementById('target').style.color = "red"
-      }, 3000)
-    }
 
-    function buttonPress2() {
+    function startTime() {
+      out_countdown = document.getElementById("countdown")
+      for(let i=0; i<4 ; i++) {
+        setTimeout(() => {
+          out_countdown.innerHTML = i
+        },(3-i)*1000)
+      }
+      out_target = document.getElementById("target")
       setTimeout(() => {
-        document.getElementById('target').style.color = "red"
-      }, 3000)
+        var buttonTime = Date.now()
+        out_target.innerHTML = (myTime === undefined) ? "Too Slow" :
+                                                         "Time was " + Math.abs(buttonTime - myTime)
+      },3000)
     }
   </script>
 
