@@ -17,18 +17,18 @@
     <p id="target">Your time</p>
   </div>
   <div class="container text-success">
-  <p id="countdown">Count</p>
-</div>
-<div class="container mb-4">
-  <button type="button" class="btn btn-danger" onclick="startTime()">Start Timer</button>
-</div>
-<div class="container mb-4">
-  <button type="button" class="btn btn-success" onclick="recordReact()">React Now</button>
-</div>
+    <p id="countdown">Count</p>
+  </div>
+  <div class="container mb-4">
+    <button type="button" class="btn btn-danger" onclick="startTime()">Start Timer</button>
+  </div>
+  <div class="container mb-4">
+    <button type="button" class="btn btn-success" onclick="recordReact()">React Now</button>
+  </div>
 
   <script>
     myTime = undefined
-    
+
     function recordReact() {
       myTime = Date.now()
       console.log(myTime)
@@ -36,17 +36,17 @@
 
     function startTime() {
       out_countdown = document.getElementById("countdown")
-      for(let i=0; i<4 ; i++) {
+      let countdown_start = Math.floor(Math.random() * (11 - 2 + 1)) + 2
+      for (let i = 0; i < countdown_start; i++) {
         setTimeout(() => {
           out_countdown.innerHTML = i
-        },(3-i)*1000)
+        }, (countdown_start - i) * 1000)
       }
       out_target = document.getElementById("target")
       setTimeout(() => {
         var buttonTime = Date.now()
-        out_target.innerHTML = (myTime === undefined) ? "Too Slow" :
-                                                         "Time was " + Math.abs(buttonTime - myTime)
-      },3000)
+        out_target.innerHTML = (myTime === undefined) ? "Too Slow" : "Time was " + Math.abs(buttonTime - myTime)
+      }, 3000)
     }
   </script>
 

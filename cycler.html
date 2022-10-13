@@ -1,25 +1,32 @@
 <!DOCTYPE html>
-<html> <head> 
+<html>
+
+<head>
 	<title>Cycler</title>
 	<style>
-    .flex-container {
-      display: flex;  flex-direction:row;
-      background-color: red;
-  }
+		.flex-container {
+			display: flex;
+			flex-direction: row;
+			background-color: red;
+		}
 
-.flex-container > div {  /*div children of the flex container*/
-  background-color: #f1f1f1; 
-  margin: 10px;  padding: 20px;  font-size: 30px;
-}
+		.flex-container>div {
+			/*div children of the flex container*/
+			background-color: #f1f1f1;
+			margin: 10px;
+			padding: 20px;
+			font-size: 30px;
+		}
 
-/* Responsive layout */
-@media (max-width: 600px) { 
-	 .flex-container{
-		 flex-direction:column;
-		 background-color: green;
-	  }
-	}
-</style></head>
+		/* Responsive layout */
+		@media (max-width: 600px) {
+			.flex-container {
+				flex-direction: column;
+				background-color: green;
+			}
+		}
+	</style>
+</head>
 
 
 
@@ -29,22 +36,22 @@
 		<input type="text" id="text_value">
 	</div>
 	<br>
-		<div class="flex-container" id="target">
-		  <div class="cycler">row item 1</div>   
-		  <div class="cycler">row item 2</div>  
-		  <div class="cycler">row item 3</div>  
-		</div>
-	
+	<div class="flex-container" id="target">
+		<div class="cycler">row item 1</div>
+		<div class="cycler">row item 2</div>
+		<div class="cycler">row item 3</div>
+	</div>
+
 	<p> Press the button to create an new element of type div and then add it to the container.
-		</p>
-		<button onclick="makeNewDiv()">Add value</button>
-		<button onclick="get()">Get</button>
-		<button onclick="spin()">Spin</button>
-		
-	
+	</p>
+	<button onclick="makeNewDiv()">Add value</button>
+	<button onclick="get()">Get</button>
+	<button onclick="spin()">Spin</button>
+	<button onclick="swap()">Swap</button>
+
 </body>
 <script>
-	function makeNewDiv(){
+	function makeNewDiv() {
 		/* make the div and its text */
 		let element = document.createElement("div")
 		element.innerHTML = document.getElementById("text_value").value
@@ -58,7 +65,7 @@
 	function get() {
 		let cyclerItems = document.getElementsByClassName("cycler")
 		noOfElements = cyclerItems.length
-		if(noOfElements > 0) {
+		if (noOfElements > 0) {
 			cyclerItems[noOfElements - 1].remove()
 		}
 	}
@@ -66,12 +73,31 @@
 	function spin() {
 		let cyclerItems = document.getElementsByClassName("cycler")
 		noOfElements = cyclerItems.length
-		if(noOfElements > 1) {
+		if (noOfElements > 1) {
 			removedItem = cyclerItems[noOfElements - 1]
 			cyclerItems[noOfElements - 1].remove()
 			let container = document.getElementById('target')
 			container.insertBefore(removedItem, container.firstChild)
 		}
 	}
+	function swap() {
+        var cyclerItems = document.getElementsByClassName("cycler")
+		noOfElements = cyclerItems.length
+		var index1 = Math.floor(Math.random() * noOfElements)
+		var index2 = generateRandom(0, noOfElements, index1)
+		if (noOfElements > 1) {
+			let element1 = cyclerItems[index1]
+			let element2 = cyclerItems[index2]
+			let temp = element1.innerHTML
+			element1.innerHTML = element2.innerHTML
+			element2.innerHTML = temp
+		}
+    }
+	
+	function generateRandom(min, max, index1) {
+		var num = Math.floor(Math.random() * (max - min)) + min;
+		return  num == index1 ? generateRandom(min,max,index1) : num
+	}
 </script>
-</html>	
+
+</html>
